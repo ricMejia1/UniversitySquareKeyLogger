@@ -1,14 +1,28 @@
-async function sendMessage() {
-    const message = document.getElementById('userInput').value;
-    const response = await fetch('http://localhost:5000/chat', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message: message }),
-    }).then(res => res.json());
+const responses = {
+    "hello": "Hi there!",
+    "how are you": "I'm good, thanks for asking!",
+    "bye": "Goodbye!",
+    // Add more predefined responses here
+};
 
-    document.getElementById('messages').innerHTML += `<div>User: ${message}</div>`;
-    document.getElementById('messages').innerHTML += `<div>Bot: ${response.response}</div>`;
-    document.getElementById('userInput').value = '';
+function sendMessage() {
+    const userInput = document.getElementById('userInput').value.trim().toLowerCase();
+    const messagesDiv = document.getElementById('messages');
+
+    if (userInput) {
+        // Display user message
+        messagesDiv.innerHTML += `<div>User: ${userInput}</div>`;
+
+        // Generate response
+        const response = responses[userInput] || "Sorry, I don't understand that.";
+        
+        // Display bot response
+        messagesDiv.innerHTML += `<div>Bot: ${response}</div>`;
+        
+        // Clear input field
+        document.getElementById('userInput').value = '';
+
+        // Scroll to the bottom
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
 }
