@@ -1,1 +1,112 @@
+let currentCard = 0;
 
+function showCard(index) {
+    const flashcard = document.getElementById("flashcard");
+    const problemElement = document.getElementById("problem");
+    const solutionElement = document.getElementById("solution");
+    const card = flashcards[index] || flashcards2[index - flashcards.length];
+    problemElement.innerText = card.problem;
+    solutionElement.innerText = card.solution;
+    flashcard.classList.remove("flip");
+}
+
+function nextCard() {
+    currentCard = (currentCard + 1) % (flashcards.length + flashcards2.length);
+    showCard(currentCard);
+}
+
+function prevCard() {
+    currentCard = (currentCard - 1 + flashcards.length + flashcards2.length) % (flashcards.length + flashcards2.length);
+    showCard(currentCard);
+}
+
+document.getElementById("flashcard").addEventListener("click", function () {
+    this.classList.toggle("flip");
+});
+
+showCard(currentCard);
+
+const flashcards = [
+    // Flashcards 1-10
+    {
+        problem: "1. Let A(2,3) and B(-1,2). Find the vector AB and compute its magnitude.",
+        solution: "Finding the vector AB: AB = B - A = (-1 - 2, 2 - 3) = (-3, -1)\nMagnitude of AB: |AB| = sqrt((-3)^2 + (-1)^2) = sqrt(9 + 1) = sqrt(10)"
+    },
+    {
+        problem: "2. Give a geometric description of the following sets of points: x^2 + y^2 + z^2 - 2x + 6y ≤ 6",
+        solution: "Complete the square: (x - 1)^2 - 1 + (y + 3)^2 - 9 + z^2 ≤ 6\n(x - 1)^2 + (y + 3)^2 + z^2 ≤ 16\nThis represents a sphere with center (1, -3, 0) and radius 4."
+    },
+    {
+        problem: "3. Let a = 3i - j + 4k and b = 5i + j. Compute a + b, a - 3b, and |4a + 2b|.",
+        solution: "a + b = (3i - j + 4k) + (5i + j) = 8i + 4k\na - 3b = (3i - j + 4k) - 3(5i + j) = -12i - 4j + 4k\n|4a + 2b| = |22i - 2j + 16k| = sqrt(22^2 + (-2)^2 + 16^2) = 2sqrt(186)"
+    },
+    {
+        problem: "4. Find two unit vectors parallel to the vector from (1,2,3) to (3,2,1).",
+        solution: "Vector AB = (3-1, 2-2, 1-3) = (2, 0, -2)\nMagnitude = sqrt(2^2 + 0^2 + (-2)^2) = 2sqrt(2)\nUnit vectors: (1/sqrt(2))(1, 0, -1) and (-1/sqrt(2))(1, 0, -1)"
+    },
+    {
+        problem: "5. Write the vector v = (1, 0, -1) as the product of its magnitude and a unit vector.",
+        solution: "Magnitude of v: |v| = sqrt(1^2 + 0^2 + (-1)^2) = sqrt(2)\nUnit vector: (1/sqrt(2))(1, 0, -1)"
+    },
+    {
+        problem: "6. Let v = 2i - 3j and w = 2j - 3k. Compute the scalar and vector projections of v onto w.",
+        solution: "Scalar projection: (v · w)/|w| = -6/sqrt(13)\nVector projection: ((v · w) / (w · w)) * w = (-12/13)j + (18/13)k"
+    },
+    {
+        problem: "7. Let a = 2i + j - 3k and b = 3i - j + 4k. Find a × b.",
+        solution: "a × b = i(1(-4) - 2(3)) - j(2(-1) - 3(2)) + k(2(3) - 1(1)) = -5i - 7j + 5k"
+    },
+    {
+        problem: "8. Suppose u = (1, 2, 3) and v = (0, -1, 1). Find the area of the triangle that has two sides formed by u and v.",
+        solution: "Cross product u × v = i(2 - (-3)) - j(1 - 0) + k(-1 - 0) = 5i - j - k\nMagnitude of cross product = sqrt(5^2 + (-1)^2 + (-1)^2) = sqrt(27) = 3sqrt(3)\nArea of triangle = 1/2 * 3sqrt(3) = 3sqrt(3)/2"
+    },
+    {
+        problem: "9. Find two distinct unit vectors orthogonal to both v = 2i + j + 2k and w = -i + 2j - k.",
+        solution: "Cross product v × w = i(1(-1) - 2(2)) - j(2(-1) - 2(-1)) + k(2(2) - 1(-1)) = -5i + 5k\nMagnitude = sqrt(25 + 25) = 5sqrt(2)\nUnit vectors: (1/5sqrt(2))(-5i + 5k) and (-1/5sqrt(2))(-5i + 5k)"
+    },
+    {
+        problem: "10. Find an equation of a line passing through the point (3, -1, 0), which is parallel to the y-axis, that is, it has direction given by the vector (0, 1, 0).",
+        solution: "x = 3, y = -1 + t, z = 0"
+    },
+    // Flashcards 11-20
+    {
+        problem: "11. Determine whether the two lines given in parametric form are parallel, intersect, or neither.",
+        solution: "Direction vectors: d1 = (1, -3, 2) and d2 = (-2, 1, 1)\nNot parallel since the ratios are not equal.\nSolving parametric equations: no consistent t, thus neither intersect nor parallel."
+    },
+    {
+        problem: "12. Find the line of intersection of the two planes x + 2y + z = 3 and 2 - 4y + 3z = 5.",
+        solution: "Find a point by setting x = 0: 2y + z = 3, 2 - 4y + 3z = 5\nSolving: y = 3/5, z = 9/5\nDirection vector: cross product of normals (1, 2, 1) × (0, -4, 3) = 10i - 3j - 4k\nLine: x = 10t, y = 3/5 - 3t, z = 9/5 - 4t"
+    },
+    {
+        problem: "13. Find an equation of a plane passing through the points P(1,2,2), Q(2,-1,4), and R(3,5,-2).",
+        solution: "Vectors PQ = (1, -3, 2) and PR = (2, 3, -4)\nNormal vector: cross product = 6i + 8j + 9k\nPlane: 6(x - 1) + 8(y - 2) + 9(z - 2) = 0, thus 6x + 8y + 9z - 40 = 0"
+    },
+    {
+        problem: "14. Identify the following surface: x^2 + z^2 = 9.",
+        solution: "This is a cylinder parallel to the y-axis with radius 3, centered on the xz-plane."
+    },
+    {
+        problem: "15. Identify the following surface: (x^2/4) + (y^2/13) = 1.",
+        solution: "This is an ellipse centered at the origin with semi-major axes aligned with the x-axis and y-axis."
+    },
+    {
+        problem: "16. Identify the following surface: (x^2/4) - (y^2/4) - (z^2/2) = 1.",
+        solution: "This is a hyperboloid of two sheets."
+    },
+    {
+        problem: "17. Give a parameterization for the line segment from A(1,0,0) to B(3,4,5).",
+        solution: "r(t) = (1, 0, 0) + t[(3, 4, 5) - (1, 0, 0)] = (1 + 2t, 4t, 5t) for 0 <= t <= 1."
+    },
+    {
+        problem: "18. Find the unit tangent vector for the trajectory given by r(t) = (3sin(t), 4t, 3cos(t)).",
+        solution: "r'(t) = (3cos(t), 4, -3sin(t))\nMagnitude = sqrt((3cos(t))^2 + 4^2 + (-3sin(t))^2) = sqrt(9 + 16 + 9) = sqrt(34)\nUnit tangent vector = (3cos(t)/sqrt(34), 4/sqrt(34), -3sin(t)/sqrt(34))"
+    },
+    {
+        problem: "19. Find r(t) if r'(t) = e^{-t}i + e^{t}j and r(0) = i + j.",
+        solution: "Integrate each component of r'(t): r(t) = -e^{-t}i + e^{t}j + C\nUsing r(0) = i + j, we find C = 2i\nThus, r(t) = (2 - e^{-t})i + e^{t}j"
+    },
+    {
+        problem: "20. Find the length of the curve given by the parameterization r(t) = (e^{t}sin(t), e^{t}cos(t)), 1 <= t <= 4.",
+        solution: "Find the derivative r'(t) = (e^{t}cos(t) + e^{t}sin(t), e^{t}cos(t) - e^{t}sin(t))\nMagnitude of r'(t) = e^{t}sqrt(2)\nLength = integral from 1 to 4 of e^{t}sqrt(2) dt = sqrt(2)(e^{4} - e)"
+    }
+];
