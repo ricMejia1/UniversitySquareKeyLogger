@@ -3,48 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Shortener</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        h1 {
-            color: #333;
-        }
-        form {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        input, button {
-            display: block;
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-        }
-        #result {
-            margin-top: 20px;
-        }
-    </style>
+    <title>Math Flashcards</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>URL Shortener</h1>
-    <form id="url-form">
-        <label for="long-url">Enter URL:</label>
-        <input type="text" id="long-url" name="long-url" required>
-        <label for="custom-alias">Custom Alias (optional):</label>
-        <input type="text" id="custom-alias" name="custom-alias">
-        <button type="submit">Shorten</button>
-    </form>
-    <div id="result"></div>
-    <script src="script.js"></script>
+    <div class="flashcard-container">
+        <div class="flashcard" id="flashcard">
+            <div class="front">
+                <p id="problem"></p>
+            </div>
+            <div class="back">
+                <p id="solution"></p>
+            </div>
+        </div>
+        <button onclick="prevCard()">Previous</button>
+        <button onclick="nextCard()">Next</button>
+    </div>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
