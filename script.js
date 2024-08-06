@@ -1,43 +1,70 @@
-document.getElementById('url-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const longUrl = document.getElementById('long-url').value;
-    const customAlias = document.getElementById('custom-alias').value.trim();
-
-    // Generate a short code
-    let shortCode = customAlias || generateShortCode();
-
-    // Check if the short code already exists
-    if (localStorage.getItem(shortCode)) {
-        alert('Alias already in use. Please choose another one.');
-        return;
-    }
-
-    // Store the URL mapping in localStorage
-    localStorage.setItem(shortCode, longUrl);
-
-    // Display the shortened URL
-    const shortUrl = `${window.location.origin}/${shortCode}`;
-    document.getElementById('result').innerText = `Shortened URL: ${shortUrl}`;
-});
-
-function generateShortCode(length = 6) {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let result = '';
-    for (let i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    return result;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
 }
 
-// Handle URL redirection
-document.addEventListener('DOMContentLoaded', function() {
-    const path = window.location.pathname.substring(1);
-    if (path) {
-        const longUrl = localStorage.getItem(path);
-        if (longUrl) {
-            window.location.href = longUrl;
-        } else {
-            document.getElementById('result').innerText = 'URL not found.';
-        }
-    }
-});
+.flashcard-container {
+    text-align: center;
+}
+
+.flashcard {
+    width: 300px;
+    height: 200px;
+    perspective: 1000px;
+    margin-bottom: 20px;
+}
+
+.flashcard div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: transform 0.6s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.front {
+    background-color: white;
+}
+
+.back {
+    background-color: white;
+    transform: rotateY(180deg);
+}
+
+.flashcard-container .flashcard {
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.flashcard-container .flashcard.flip .front {
+    transform: rotateY(180deg);
+}
+
+.flashcard-container .flashcard.flip .back {
+    transform: rotateY(0);
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
