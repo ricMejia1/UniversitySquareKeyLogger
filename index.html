@@ -3,23 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Flashcards</title>
+    <title>Language Learning</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="flashcard-container">
-        <div class="flashcard" id="flashcard">
-            <div class="front">
-                <p id="problem"></p>
+    <header>
+        <h1>Learn Chinese</h1>
+        <nav>
+            <ul>
+                <li><a href="#flashcards">Flashcards</a></li>
+                <li><a href="#grammar">Grammar</a></li>
+                <li><a href="#quizzes">Quizzes</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="flashcards">
+            <h2>Flashcards</h2>
+            <div id="flashcard-container">
+                <!-- Flashcards will be inserted here by JavaScript -->
             </div>
-            <div class="back">
-                <p id="solution"></p>
+        </section>
+        <section id="grammar">
+            <h2>Grammar Lessons</h2>
+            <!-- Add your grammar lessons here -->
+        </section>
+        <section id="quizzes">
+            <h2>Interactive Quizzes</h2>
+            <div id="quiz-container">
+                <p id="question"></p>
+                <div id="answers"></div>
+                <button id="next">Next Question</button>
             </div>
-        </div>
-        <button onclick="prevCard()">Previous</button>
-        <button onclick="nextCard()">Next</button>
-    </div>
-
-    <script src="scripts.js"></script>
+        </section>
+    </main>
+    <script src="script.js"></script>
 </body>
 </html>
