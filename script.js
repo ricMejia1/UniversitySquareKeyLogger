@@ -1,52 +1,92 @@
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
     background-color: #f4f4f4;
 }
 
 header {
-    background-color: #333;
+    background-color: #007BFF;
     color: white;
-    padding: 1rem 0;
-    text-align: center;
+    padding: 1rem 2rem;
 }
 
-nav ul {
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
     list-style: none;
-    padding: 0;
+    display: flex;
+    gap: 1rem;
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 1rem;
-}
-
-nav ul li a {
+.nav-links a {
     color: white;
     text-decoration: none;
 }
 
-main {
-    padding: 1rem;
-}
-
-section {
-    margin: 2rem 0;
-}
-
-#flashcard-container {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.flashcard {
-    background-color: white;
-    border: 1px solid #ccc;
+.nav-links .button {
+    background-color: #0056b3;
+    padding: 0.5rem 1rem;
     border-radius: 5px;
-    margin: 1rem;
-    padding: 1rem;
-    width: 200px;
+}
+
+.hero {
+    background-color: #0056b3;
+    color: white;
+    padding: 5rem 2rem;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button {
+    background-color: #007BFF;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.features, .pricing, .contact {
+    padding: 4rem 2rem;
+    background-color: white;
+    text-align: center;
+}
+
+.feature-cards, .pricing-cards {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+
+.card {
+    background-color: #f4f4f4;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 30%;
+}
+
+.contact form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact input, .contact textarea {
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
 }
