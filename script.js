@@ -51,16 +51,17 @@ nav {
     margin-top: 1rem;
 }
 
-.features, .pricing, .contact {
+.features, .services, .about, .testimonials, .contact {
     padding: 4rem 2rem;
     background-color: white;
     text-align: center;
 }
 
-.feature-cards, .pricing-cards {
+.feature-cards, .service-cards, .testimonial-cards {
     display: flex;
     justify-content: space-around;
     margin-top: 2rem;
+    flex-wrap: wrap;
 }
 
 .card {
@@ -68,6 +69,12 @@ nav {
     padding: 2rem;
     border-radius: 10px;
     width: 30%;
+    margin: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about {
+    background-color: #f9f9f9;
 }
 
 .contact form {
