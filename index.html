@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Key Logger</title>
+    <title>University Square Key Log</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,6 +15,10 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+        }
+
+        h1 {
+            color: #333;
         }
 
         #key-form {
@@ -35,7 +39,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 200px;
+            width: 300px;
         }
 
         .remove-btn {
@@ -46,13 +50,27 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
+        .vendor-input {
+            display: none;
+        }
     </style>
 </head>
 <body>
 
-    <h1>Key Logger</h1>
+    <h1>University Square Key Log</h1>
     <form id="key-form">
         <input type="number" id="key-number" placeholder="Enter key number" required>
+
+        <select id="name-dropdown">
+            <option value="">Select Name</option>
+            <option value="John Doe">John Doe</option>
+            <option value="Jane Smith">Jane Smith</option>
+            <option value="Vendor">Vendor</option>
+        </select>
+
+        <input type="text" id="vendor-name" class="vendor-input" placeholder="Enter vendor name">
+
         <button type="submit">Add Key</button>
     </form>
 
@@ -61,20 +79,43 @@
     <script>
         const keyForm = document.getElementById('key-form');
         const keyNumberInput = document.getElementById('key-number');
+        const nameDropdown = document.getElementById('name-dropdown');
+        const vendorInput = document.getElementById('vendor-name');
         const keyList = document.getElementById('key-list');
 
-        keyForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const keyNumber = keyNumberInput.value;
-            if (keyNumber) {
-                addKeyToList(keyNumber);
-                keyNumberInput.value = '';
+        nameDropdown.addEventListener('change', function() {
+            if (nameDropdown.value === 'Vendor') {
+                vendorInput.style.display = 'inline';
+            } else {
+                vendorInput.style.display = 'none';
+                vendorInput.value = ''; // Clear vendor input when not needed
             }
         });
 
-        function addKeyToList(keyNumber) {
+        keyForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const keyNumber = keyNumberInput.value;
+            let name = nameDropdown.value;
+
+            if (name === 'Vendor' && vendorInput.value.trim() !== '') {
+                name = vendorInput.value.trim();
+            }
+
+            if (keyNumber && name) {
+                addKeyToList(keyNumber, name);
+                keyNumberInput.value = '';
+                nameDropdown.value = '';
+                vendorInput.value = '';
+                vendorInput.style.display = 'none';
+            } else {
+                alert('Please enter a key number and select or enter a name.');
+            }
+        });
+
+        function addKeyToList(keyNumber, name) {
             const listItem = document.createElement('li');
-            listItem.textContent = `Key ${keyNumber}`;
+            listItem.textContent = `Key ${keyNumber} - ${name}`;
 
             const removeButton = document.createElement('button');
             removeButton.textContent = 'Remove';
