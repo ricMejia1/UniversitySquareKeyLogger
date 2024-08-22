@@ -67,7 +67,6 @@
             <option value="Will Mallet">Will Mallet</option>
             <option value="Nelson Jurecka">Nelso Jurecka</option>
             <option value="Kristina Krnavek">Kristina Krnavek</option>
-            <option value="Ricardo Mejia">Ricardo Mejia</option>
             <option value="Vendor">Vendor</option>
         </select>
 
@@ -118,7 +117,13 @@
 
         function addKeyToList(keyNumber, name) {
             const listItem = document.createElement('li');
-            listItem.textContent = `Key ${keyNumber} - ${name}`;
+
+            // Get the current date and time
+            const now = new Date();
+            const dateTime = now.toLocaleString(); // Formats the date and time as a string
+
+            // Set the text content to include key number, name, and date/time
+            listItem.textContent = `Key ${keyNumber} - ${name} (Added on: ${dateTime})`;
 
             const removeButton = document.createElement('button');
             removeButton.textContent = 'Remove';
