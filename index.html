@@ -64,9 +64,8 @@
 
         <select id="name-dropdown">
             <option value="">Select Name</option>
-            <option value="Nelson Jurecka">Nelson Jurecka</option>
-            <option value="Ricardo Mejia">Ricardo Mejia</option>
-            <option value="Kristina Krnevk">Kristina Krnevk</option>
+            <option value="John Doe">John Doe</option>
+            <option value="Jane Smith">Jane Smith</option>
             <option value="Vendor">Vendor</option>
         </select>
 
@@ -83,6 +82,7 @@
         const nameDropdown = document.getElementById('name-dropdown');
         const vendorInput = document.getElementById('vendor-name');
         const keyList = document.getElementById('key-list');
+        const pin = '1234'; // Set a PIN here
 
         nameDropdown.addEventListener('change', function() {
             if (nameDropdown.value === 'Vendor') {
@@ -122,7 +122,12 @@
             removeButton.textContent = 'Remove';
             removeButton.className = 'remove-btn';
             removeButton.onclick = function() {
-                keyList.removeChild(listItem);
+                const enteredPin = prompt('Enter PIN to remove key:');
+                if (enteredPin === pin) {
+                    keyList.removeChild(listItem);
+                } else {
+                    alert('Incorrect PIN. Cannot remove key.');
+                }
             };
 
             listItem.appendChild(removeButton);
